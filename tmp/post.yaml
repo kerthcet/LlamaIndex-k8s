@@ -1,1 +1,0 @@
-```yaml\n...\ntopologySpreadConstraints:\n- maxSkew: 1\n  minDomains: 5 # 需要至少 5 个 Node（因为每个 Node 都有唯一的 hostname）\n  whenUnsatisfiable: DoNotSchedule # 只有使用 DoNotSchedule 时 minDomains 才有效\n  topologyKey: kubernetes.io/hostname\n  labelSelector:\n    matchLabels:\n        foo: bar\n```\n\n
