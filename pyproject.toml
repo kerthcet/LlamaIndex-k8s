@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "llamaindex-k8s"
+version = "0.1.0"
+description = "RAG system build on top of LlamaIndex."
+authors = ["kerthcet <kerthcet@gmail.com>"]
+license = "MIT License"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+llama-index = "^0.8.29.post1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
