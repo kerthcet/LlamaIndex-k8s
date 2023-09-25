@@ -16,18 +16,16 @@ def get_metadata_from_md(path: str) -> Dict:
             if line.startswith("title:"):
                 print(line)
                 title = line.split("\r\n")[0]
+                title = title.replace("title: ", "")
                 # 提取''中的内容
                 if len(title.split("\'")) > 1:
-                    title = title.split("\'")[1].strip()
+                    title = title.strip("\'").strip()
                 # 提取""中的内容
                 elif len(title.split("\"")) > 1:
-                    title = title.split("\"")[1].strip()
-                # 提取中文双引号“”中的内容，提取后为空
-                elif len(title.split("“")) > 1:
-                    title = title.split("”")[1]
-                # 没有引号做分隔
-                else:
-                    title = title.replace("title: ", "")
+                    title = title.strip("\"").strip()
+                # 提取中文双引号“”中的内容
+                elif len(title.split("”")) > 1:
+                    title = title.replace("“","").replace("”","").strip()
                 break
     print(title)
     print(path)
