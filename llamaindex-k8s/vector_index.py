@@ -13,12 +13,11 @@ from llama_index import (
     SimpleKeywordTableIndex
 )
 from IPython.display import Markdown, display
+from llama_index import VectorStoreIndex, ServiceContext, set_global_service_context
+from langchain.embeddings.huggingface import HuggingFaceBgeEmbeddings
 
 documents = SimpleDirectoryReader(input_files=["./data/markdown.md", "./data/markdown_1.md", "./data/markdown_2.md"],
                                   required_exts=[".md"]).load_data()
-
-from llama_index import VectorStoreIndex, ServiceContext, set_global_service_context
-from langchain.embeddings.huggingface import HuggingFaceBgeEmbeddings
 
 # embed_model = HuggingFaceBgeEmbeddings(model_name="BAAI/bge-base-zh")
 embed_model = HuggingFaceBgeEmbeddings(model_name="BAAI/bge-base-zh-v1.5")

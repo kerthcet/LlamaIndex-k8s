@@ -2,6 +2,10 @@ import os
 from llama_index import SimpleDirectoryReader
 from typing import List, Set
 from data_cleanup import get_metadata_from_md
+from llama_index import VectorStoreIndex, ServiceContext, set_global_service_context, KeywordTableIndex, \
+    SimpleKeywordTableIndex, SummaryIndex
+from llama_index.retrievers import KeywordTableSimpleRetriever
+from llama_index.indices.keyword_table.utils import simple_extract_keywords, rake_extract_keywords
 
 current_path = os.path.dirname(os.path.dirname(__file__))
 filename = "/contents/posts/2023-04-17-topology-spread-features.md"
@@ -23,20 +27,13 @@ reader = SimpleDirectoryReader(
     recursive=True,
     file_metadata=metadata,
 )
-
 docs = reader.load_data()
-
-from llama_index import VectorStoreIndex, ServiceContext, set_global_service_context, KeywordTableIndex, \
-    SimpleKeywordTableIndex, SummaryIndex
 
 service_context = ServiceContext.from_defaults(
     # embed_model="local:BAAI/bge-small-en"
     chunk_size=2000,
 )
 set_global_service_context(service_context)
-
-from llama_index.retrievers import KeywordTableSimpleRetriever
-from llama_index.indices.keyword_table.utils import simple_extract_keywords, rake_extract_keywords
 
 
 class MyKeywordIndex(SimpleKeywordTableIndex):
