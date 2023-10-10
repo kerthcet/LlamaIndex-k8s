@@ -32,9 +32,9 @@ docs = reader.load_data()
 service_context = ServiceContext.from_defaults(
     # embed_model="local:BAAI/bge-small-en"
     chunk_size=2000,
-    llm=OpenAI(api_key="<KEY>",
-               api_base="<URL>"),
-)
+    llm=OpenAI(api_key=os.getenv("OPENAI_API_KEY"),
+               api_base=os.getenv('OPENAI_ENDPOINT')
+               ))
 set_global_service_context(service_context)
 
 index = SummaryIndex.from_documents(docs)
