@@ -54,6 +54,7 @@ for node in results:
 # prompt and chat
 template = """
 你是一个kubernetes助手，你的回答基于事实，详细且准确。
+请使用与kubernetes相关的先验知识，并根据提供的信息来回答问题。
 目前已知信息如下：
 {context}
 如果所给信息与问题无关，请忽略。
